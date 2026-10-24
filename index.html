@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TAHOR - VIDEO ADVERT GLASSY</title>
+<title>TAHOR - MUSINA FOUNDER + VOICE AD</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif}
 body{background:#000;color:#fff;overflow:hidden}
@@ -14,35 +14,29 @@ body{background:#000;color:#fff;overflow:hidden}
 @keyframes zoomMove{from{transform:scale(1)} to{transform:scale(1.2) translateY(-20px)}}
 .content{position:relative;z-index:2}
 
-/* GLASSY BIG CARDS */
+/* VOICE BAR - GLASSY */
+.voice-bar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.75);backdrop-filter:blur(15px);padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:2px solid #FF6B00}
+.voice-bar .live{width:12px;height:12px;background:red;border-radius:50%;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.voice-bar audio{flex:1;height:36px;border-radius:20px}
+.tap-play{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);display:flex;justify-content:center;align-items:center;flex-direction:column;gap:15px;cursor:pointer}
+.tap-play button{background:#FF6B00;color:#fff;border:none;padding:18px 35px;border-radius:30px;font-weight:900;font-size:22px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+
+/* GLASSY CARDS */
 .glass-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:420px;width:90%;margin-top:20px}
-.glass{
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,.3);
-padding:22px 10px;
-border-radius:22px;
-box-shadow:0 8px 32px rgba(0,0,0,.3);
-animation:floatUp .8s forwards;
-opacity:0;
-transform:translateY(40px);
-}
+.glass{background:rgba(255,255,255,.18);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.3);padding:22px 10px;border-radius:22px;box-shadow:0 8px 32px rgba(0,0,0,.3);animation:floatUp .8s forwards;opacity:0;transform:translateY(40px)}
 .glass b{display:block;font-size:18px;margin-top:8px}
-.glass span{font-size:38px;display:block;filter:drop-shadow(0 2px 10px rgba(0,0,0,.4))}
-.glass:nth-child(1){animation-delay:.1s}
-.glass:nth-child(2){animation-delay:.2s}
-.glass:nth-child(3){animation-delay:.3s}
-.glass:nth-child(4){animation-delay:.4s}
-.glass:nth-child(5){animation-delay:.5s}
-.glass:nth-child(6){animation-delay:.6s}
+.glass span{font-size:38px;display:block}
+.glass:nth-child(1){animation-delay:.1s}.glass:nth-child(2){animation-delay:.2s}.glass:nth-child(3){animation-delay:.3s}.glass:nth-child(4){animation-delay:.4s}.glass:nth-child(5){animation-delay:.5s}.glass:nth-child(6){animation-delay:.6s}
 @keyframes floatUp{to{opacity:1;transform:translateY(0)}}
-@keyframes floatCar{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* FOUNDER PIC - THIS FIXES YOUR PROBLEM */
+.founder-wrap{width:170px;height:170px;border-radius:50%;border:5px solid #FF6B00;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.6);margin:0 auto 15px;background:#fff}
+.founder-wrap img{width:100%;height:100%;object-fit:cover;object-position:top}
 
 .logo{font-size:70px;font-weight:900;letter-spacing:2px;text-shadow:0 4px 20px rgba(0,0,0,.5)}
 .logo span{color:#FF6B00}
-.badge{background:rgba(255,107,0,.9);backdrop-filter:blur(10px);padding:10px 20px;border-radius:30px;font-weight:900;font-size:14px;margin-top:15px;display:inline-block;box-shadow:0 4px 20px rgba(255,107,0,.5)}
-
+.badge{background:rgba(255,107,0,.9);padding:10px 20px;border-radius:30px;font-weight:900;font-size:14px;margin-top:15px;display:inline-block}
 .progress{position:fixed;bottom:0;left:0;height:8px;background:linear-gradient(90deg,#FF6B00,#FFD700);z-index:99;width:0%;transition:width .1s linear}
 .dots{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:99}
 .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4)}
@@ -50,26 +44,52 @@ transform:translateY(40px);
 </style>
 </head>
 <body>
+
+<!-- TAP TO PLAY IF PHONE BLOCKS -->
+<div class="tap-play" id="tapPlay" onclick="playAll()">
+<div style="font-size:60px">🔊</div>
+<button>🔊 TAP TO PLAY VOICE</button>
+<div style="font-size:13px;opacity:.8">TAHOR - Musina Safety Voice</div>
+</div>
+
+<!-- VOICE BAR WITH YOUR voice.mp3 -->
+<div class="voice-bar">
+<div class="live"></div>
+<div style="font-weight:900;font-size:12px;letter-spacing:1px">TAHOR VOICE</div>
+<audio id="tahorVoice" controls autoplay>
+<source src="voice.mp3" type="audio/mpeg">
+</audio>
+</div>
+
 <div class="video">
 <div class="progress" id="progress"></div>
-<div class="dots"><div class="dot active" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div></div>
+<div class="dots"><div class="dot active" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div><div class="dot" id="d4"></div></div>
 
-<!-- SCENE 1 -->
-<div class="scene active" id="s0">
-<div class="bg-move" style="background-image:linear-gradient(rgba(10,74,140,.6), rgba(0,0,0,.7)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80')"></div>
+<!-- SCENE 0 - FOUNDER + YOUR PIC - THIS IS NEW! -->
+<div class="scene active" id="s0" style="background:linear-gradient(180deg,#0A4A8C,#061E3D)">
 <div class="content">
+<div class="founder-wrap"><img src="founder.jpg" alt="TAHOR Founder"></div>
+<div style="background:rgba(255,107,0,.9);padding:6px 14px;border-radius:20px;font-size:11px;font-weight:900;letter-spacing:2px;display:inline-block;margin-bottom:10px">FOUNDER • MUSINA</div>
 <div class="logo">TA<span>HOR</span></div>
 <div style="font-size:10px;letter-spacing:4px;color:#FFD9B0;margin-top:5px">BUSINESSES MARKETING PLATFORM</div>
-<h2 style="margin-top:20px;font-size:26px;line-height:1.2;font-weight:800;max-width:380px">All Musina Businesses<br>In One Pot</h2>
-<div class="badge">📍 MUSINA • LIMPOPO • 100+ BUSINESSES</div>
+<h2 style="margin-top:15px;font-size:22px;line-height:1.3;font-weight:800;max-width:380px">Why go to town and find nothing?<br>When TAHOR has everything!</h2>
+<div class="badge">🎙️ VOICE BY FOUNDER • LISTEN TOP</div>
 </div>
 </div>
 
-<!-- SCENE 2 - GLASSY BIG -->
+<!-- SCENE 1 -->
 <div class="scene" id="s1">
-<div class="bg-move" style="background-image:linear-gradient(180deg,#D8E8F7,#0A4A8C)"></div>
+<div class="bg-move" style="background-image:linear-gradient(rgba(10,74,140,.6), rgba(0,0,0,.7)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80')"></div>
+<div class="content">
+<h2 style="font-size:26px;font-weight:800;max-width:380px">All Musina Businesses<br>In One Pot</h2>
+<div class="badge">📍 MUSINA • 100+ BUSINESSES</div>
+</div>
+</div>
+
+<!-- SCENE 2 - GLASSY -->
+<div class="scene" id="s2" style="background:linear-gradient(180deg,#D8E8F7,#0A4A8C)">
 <div class="content" style="width:100%">
-<h1 style="font-size:36px;font-weight:900;color:#0B3A6B;text-shadow:none">Everything in Musina</h1>
+<h1 style="font-size:32px;font-weight:900;color:#0B3A6B">Everything in Musina</h1>
 <div class="glass-grid">
 <div class="glass"><span>🍔</span><b>FOOD</b></div>
 <div class="glass"><span>🛍️</span><b>RETAIL</b></div>
@@ -81,47 +101,41 @@ transform:translateY(40px);
 </div>
 </div>
 
-<!-- SCENE 3 - SERVICES BIG CAR -->
-<div class="scene" id="s2">
-<div class="bg-move" style="background-image:linear-gradient(180deg,#0F766E,#0B3A6B)"></div>
+<!-- SCENE 3 - SERVICES -->
+<div class="scene" id="s3" style="background:linear-gradient(180deg,#0F766E,#0B3A6B)">
 <div class="content">
-<div style="font-size:80px;animation:floatCar 2s infinite">🚕</div>
-<h1 style="font-size:32px;font-weight:900;margin-top:10px">Mustown Uber<br>Inside TAHOR</h1>
+<div style="font-size:70px">🚕</div>
+<h1 style="font-size:28px;font-weight:900;margin-top:10px">Mustown Uber<br>Inside TAHOR</h1>
 <div style="margin-top:15px;display:flex;flex-direction:column;gap:10px;max-width:340px">
-<div class="glass" style="opacity:1;transform:none;display:flex;align-items:center;gap:12px;text-align:left;padding:14px"><span style="font-size:32px">🧹</span><div><b style="font-size:16px">JJ TEAM Cleaning</b><br><small>JoJo • Garden • Spring</small></div></div>
-<div class="glass" style="opacity:1;transform:none;display:flex;align-items:center;gap:12px;text-align:left;padding:14px;background:rgba(255,255,255,.25)"><span style="font-size:32px">🚗</span><div><b style="font-size:18px">MUSTOWN UBER</b><br><small>DAVIS 076 358 4601 • Musina</small></div></div>
+<div class="glass" style="opacity:1;transform:none;display:flex;align-items:center;gap:12px;text-align:left;padding:14px"><span style="font-size:32px">🧹</span><div><b>JJ TEAM Cleaning</b><br><small>JoJo • Garden • Spring</small></div></div>
+<div class="glass" style="opacity:1;transform:none;display:flex;align-items:center;gap:12px;text-align:left;padding:14px"><span style="font-size:32px">🚗</span><div><b>MUSTOWN UBER</b><br><small>DAVIS 076 358 4601</small></div></div>
 </div>
 </div>
 </div>
 
 <!-- SCENE 4 - CTA -->
-<div class="scene" id="s3">
+<div class="scene" id="s4">
 <div class="bg-move" style="background-image:linear-gradient(rgba(0,0,0,.3), rgba(10,74,140,.9)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80')"></div>
 <div class="content">
-<h1 style="font-size:42px;font-weight:900;line-height:1.1">Ready to grow?</h1>
-<p style="font-size:18px;margin-top:10px;opacity:.9">Your business inside TAHOR Tower</p>
-<div style="margin-top:20px;background:#fff;color:#0A4A8C;padding:18px 28px;border-radius:30px;font-weight:900;font-size:20px;display:inline-block;box-shadow:0 10px 30px rgba(0,0,0,.4)">Add Business - R60 →</div>
-<p style="font-size:12px;margin-top:20px;opacity:.7">Musina Ext 14 • 079 907 3779 • tahor.co.za</p>
+<div class="founder-wrap" style="width:90px;height:90px;border-width:3px"><img src="founder.jpg"></div>
+<h1 style="font-size:36px;font-weight:900;line-height:1.1">Ready to grow?</h1>
+<p style="font-size:16px;margin-top:10px;opacity:.9">Your business inside TAHOR</p>
+<div style="margin-top:20px;background:#fff;color:#0A4A8C;padding:16px 24px;border-radius:30px;font-weight:900;font-size:18px;display:inline-block">Add Business - R60 →</div>
+<p style="font-size:12px;margin-top:15px;opacity:.7">079 907 3779 • tahor.co.za</p>
 </div>
 </div>
 
 </div>
 
 <script>
-let scenes=['s0','s1','s2','s3'];
+let scenes=['s0','s1','s2','s3','s4'];
 let cur=0; let start=Date.now();
-let total=20;
+let total=25;
 function show(i){
  document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));
  document.getElementById(scenes[i]).classList.add('active');
  document.querySelectorAll('.dot').forEach(d=>d.classList.remove('active'));
  document.getElementById('d'+i).classList.add('active');
- // re-animate glass
- if(i==1){
-   document.querySelectorAll('#s1 .glass').forEach(el=>{
-     el.style.animation='none'; el.offsetHeight; el.style.animation='';
-   });
- }
  cur=i;
 }
 setInterval(()=>{
@@ -129,8 +143,18 @@ setInterval(()=>{
  if(elapsed>total){start=Date.now(); elapsed=0; show(0)}
  document.getElementById('progress').style.width=(elapsed/total*100)+'%';
  let idx=Math.floor(elapsed/5);
- if(idx!=cur && idx<4) show(idx);
+ if(idx!=cur && idx<5) show(idx);
 },50);
+
+function playAll(){
+ const audio=document.getElementById('tahorVoice');
+ audio.play();
+ document.getElementById('tapPlay').style.display='none';
+}
+window.addEventListener('load',()=>{
+ const audio=document.getElementById('tahorVoice');
+ audio.play().then(()=>{document.getElementById('tapPlay').style.display='none';}).catch(()=>{document.getElementById('tapPlay').style.display='flex';});
+});
 </script>
 </body>
 </html>
