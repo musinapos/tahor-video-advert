@@ -1,1 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAHOR - VIDEO ADVERT - Burn The Ships</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif}
+body{background:#000;color:#fff;overflow:hidden}
+.video-container{width:100vw;height:100vh;position:relative;background:#000}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;opacity:0;transform:scale(1.1);transition:all 1s ease;background-size:cover;background-position:center}
+.scene.active{opacity:1;transform:scale(1);z-index:10}
 
+/* SCENE 1 - BURN THE SHIPS */
+#scene1{background:linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.8)), url('https://images.unsplash.com/photo-1505142468610-359e7bcbe222?w=800&q=80'); }
+#scene1 h1{font-size:58px;font-weight:900;color:#FF6B00;line-height:.9;text-shadow:0 0 20px #FF6B00;animation: fireGlow 1s infinite alternate}
+#scene1 h2{font-size:22px;margin-top:15px;color:#fff;font-weight:400}
+@keyframes fireGlow{from{text-shadow:0 0 10px #FF6B00} to{text-shadow:0 0 30px #FF6B00, 0 0 40px #ff4500}}
+
+/* SCENE 2 - TAHOR */
+#scene2{background:linear-gradient(180deg,#0A4A8C,#0B3A6B)}
+#scene2 .logo{font-size:70px;font-weight:900;letter-spacing:2px}
+#scene2 .logo span{color:#FF6B00}
+#scene2 p{font-size:20px;margin-top:10px;max-width:600px;line-height:1.4}
+.badge-live{background:#FF6B00;padding:6px 14px;border-radius:20px;font-weight:900;font-size:12px;margin-top:15px;animation:beep 1s infinite}
+@keyframes beep{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+/* SCENE 3 - CATEGORIES FLY */
+#scene3{background:linear-gradient(180deg,#D8E8F7,#fff);color:#0B3A6B}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:400px;margin-top:20px}
+.cat{padding:18px;border-radius:15px;color:#fff;font-weight:900;font-size:14px;transform:translateY(50px);opacity:0;animation: popUp .6s forwards}
+.cat:nth-child(1){background:#FF6B00;animation-delay:.2s}
+.cat:nth-child(2){background:#EC4899;animation-delay:.4s}
+.cat:nth-child(3){background:#0F766E;animation-delay:.6s}
+.cat:nth-child(4){background:#6C2BD9;animation-delay:.8s}
+.cat:nth-child(5){background:#0A4A8C;animation-delay:1s}
+.cat:nth-child(6){background:#25D366;animation-delay:1.2s}
+@keyframes popUp{to{transform:translateY(0);opacity:1}}
+
+/* SCENE 4 - CTA */
+#scene4{background:linear-gradient(rgba(10,74,140,.9), rgba(11,58,107,.9)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80');}
+#scene4 h1{font-size:40px;line-height:1.1}
+#scene4 a{background:#FF6B00;color:#fff;padding:18px 35px;border-radius:30px;font-weight:900;font-size:20px;text-decoration:none;margin-top:20px;display:inline-block;animation:bounce 1s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.progress{position:fixed;bottom:0;left:0;height:6px;background:#FF6B00;z-index:99;transition:width .3s}
+.timer{position:fixed;top:15px;right:15px;background:rgba(0,0,0,.6);padding:6px 12px;border-radius:20px;font-size:12px;z-index:99}
+</style>
+</head>
+<body>
+<div class="video-container">
+<div class="timer" id="timer">00:00 / 00:30</div>
+<div class="progress" id="progress"></div>
+
+<!-- SCENE 1 - 0-6s -->
+<div class="scene active" id="scene1">
+<h1>Burn the<br>ships 🔥</h1>
+<h2>fight with no means of retreat</h2>
+<p style="margin-top:20px;font-size:14px;opacity:.8">We burned the old way of finding businesses...</p>
+</div>
+
+<!-- SCENE 2 - 6-13s -->
+<div class="scene" id="scene2">
+<div class="logo">TA<span>HOR</span></div>
+<p><b>ALL MUSINA BUSINESSES IN ONE POT</b><br>Discover, connect, and support local businesses in Musina — all in one platform.</p>
+<div class="badge-live">📍 100+ BUSINESSES LIVE IN MUSINA</div>
+</div>
+
+<!-- SCENE 3 - 13-22s -->
+<div class="scene" id="scene3">
+<h1 style="font-size:32px">Everything in Musina<br>in ONE APP</h1>
+<div class="cat-grid">
+<div class="cat">🍔 Food</div>
+<div class="cat">🛍️ Retail</div>
+<div class="cat">🔧 Services</div>
+<div class="cat">📚 Bookstore</div>
+<div class="cat">🚗 Car Parts</div>
+<div class="cat">🛒 Pre-Order</div>
+</div>
+<p style="margin-top:15px;font-size:13px;color:#555">Moonate Ko Kasi • JJ TEAM • Mustown Uber • Takealot & More</p>
+</div>
+
+<!-- SCENE 4 - 22-30s -->
+<div class="scene" id="scene4">
+<h1>Ready to grow<br>your business?</h1>
+<p style="margin-top:10px">Join hundreds of businesses<br>inside TAHOR Tower</p>
+<a href="https://musinapos.github.io/moonate-ko-kasi/" target="_blank">Add Your Business - R60 →</a>
+<p style="font-size:11px;margin-top:15px;opacity:.7">TAHOR • Musina Ext 14 • 079 907 3779<br>Burn The Ships • No Retreat • Forward Only 🔥</p>
+</div>
+</div>
+
+<script>
+let scenes = ['scene1','scene2','scene3','scene4'];
+let times = [0,6,13,22,30]; // seconds
+let current=0;
+let startTime=Date.now();
+let total=30;
+
+function showScene(i){
+  document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));
+  document.getElementById(scenes[i]).classList.add('active');
+  // re-trigger cat animation
+  if(i==2){
+    document.querySelectorAll('.cat').forEach(c=>{
+      c.style.animation='none'; c.offsetHeight; c.style.animation='';
+    });
+  }
+}
+
+setInterval(()=>{
+  let elapsed = (Date.now()-startTime)/1000;
+  if(elapsed>total){startTime=Date.now(); elapsed=0; current=0; showScene(0)}
+  document.getElementById('progress').style.width = (elapsed/total*100)+'%';
+  document.getElementById('timer').innerText = `00:${String(Math.floor(elapsed)).padStart(2,'0')} / 00:30`;
+  
+  for(let i=0;i<times.length-1;i++){
+    if(elapsed>=times[i] && elapsed<times[i+1] && current!==i){
+      current=i; showScene(i); break;
+    }
+  }
+},100);
+
+showScene(0);
+</script>
+</body>
+</html>
